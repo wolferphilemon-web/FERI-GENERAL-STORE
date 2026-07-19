@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Garment Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+<body>
+    <header>
+    <h1>My Garment Store</h1>
+    <p>Quality Clothes at Affordable Prices</p>
+
+    <nav>
+    <a href="/">Home</a>
+    <a href="#">Men</a>
+    <a href="#">Women</a>
+    <a href="#">Kids</a>
+    <a href="#">Contact</a>
+    <a href="/cart">Cart 🛒</a>
+    <a href="/admin">Admin</a>
+</nav>
+</header>
+<section class="hero">
+    <h2>New Fashion Collection 2026</h2>
+    <p>Discover the latest trends for men, women and kids.</p>
+    <button>Shop Now</button>
+</section>
+<div class="products">
+    {% for product in products %}
+<div class="card">
+    <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+
+    <h2>{{ product.name }}</h2>
+
+    <p>Ksh {{ product.price }}</p>
+
+    <a href="/buy/{{ product.id }}">
+        <button>Buy Now</button>
+    </a>
+</div>
+{% endfor %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>Edit Product</h1>
+</header>
+
+<div style="padding:30px; max-width:600px; margin:auto;">
+
+    <form method="POST">
+
+        <label>Product Name</label><br>
+        <input type="text" name="name" value="{{ product.name }}" required><br><br>
+
+        <label>Price (Ksh)</label><br>
+        <input type="number" name="price" value="{{ product.price }}" required><br><br>
+
+        <label>Image Filename</label><br>
+        <input type="text" name="image" value="{{ product.image }}" required><br><br>
+
+        <button type="submit">Update Product</button>
+
+    </form>
+
+    <br>
+
+    <a href="/admin">
+        <button>Back to Admin</button>
+    </a>
+
+</div>
+
+</body>
+</html>
