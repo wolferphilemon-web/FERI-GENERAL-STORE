@@ -15,16 +15,16 @@
 
     <h2>Add New Product</h2>
 
-    <form method="POST" action="/add_product">
+    <form method="POST" action="/add_product" enctype="multipart/form-data">
 
         <label>Product Name</label><br>
-        <input type="text" name="name" placeholder="Enter product name" required><br><br>
+        <input type="text" name="name" required><br><br>
 
         <label>Price (Ksh)</label><br>
-        <input type="number" name="price" placeholder="Enter price" required><br><br>
+        <input type="number" name="price" required><br><br>
 
-        <label>Image Filename</label><br>
-        <input type="text" name="image" placeholder="example.jpg" required><br><br>
+        <label>Product Image</label><br>
+        <input type="file" name="image" accept="image/*" required><br><br>
 
         <button type="submit">Add Product</button>
 
@@ -51,7 +51,7 @@
             <td>{{ product.id }}</td>
 
             <td>
-                <img src="{{ url_for('static', filename='images/' + product.image) }}"
+                <img src="{{ url_for('static', filename='uploads/' + product.image) }}"
                      width="80">
             </td>
 
@@ -66,7 +66,7 @@
                 </a>
 
                 <a href="/delete_product/{{ product.id }}">
-                    <button onclick="return confirm('Are you sure you want to delete this product?')">
+                    <button onclick="return confirm('Delete this product?')">
                         Delete
                     </button>
                 </a>
