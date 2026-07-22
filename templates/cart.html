@@ -1,43 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Shopping Cart | FERI GENERAL STORE{% endblock %}
 
-<header>
-    <h1>Shopping Cart</h1>
-</header>
+{% block content %}
+<section class="page-shell">
+    <div class="page-card page-card-wide">
+        <div class="section-heading">
+            <p class="eyebrow">Your basket</p>
+            <h1>Shopping Cart</h1>
+        </div>
 
-<div style="padding:30px;">
-
-    {% if cart %}
-
-        <h2>Your Items</h2>
-
-        <ul style="list-style:none;">
-            {% for item in cart %}
-                <li style="margin:15px;">
-                    {{ item.name }} - Ksh {{ item.price }}
-                </li>
-            {% endfor %}
-        </ul>
-
-        <h2>Total: Ksh {{ total }}</h2>
-
-    {% else %}
-
-        <h2>Your cart is empty.</h2>
-
-    {% endif %}
-
-    <br><br>
-
-    <a href="/">← Continue Shopping</a>
-
-</div>
-
-</body>
-</html>
+        {% if cart %}
+        <div class="cart-layout">
+            <div class="cart-items">
+                {% for item in cart %}
+                <div class="cart-item">
+                    <img src="{{ url_for('static', filename='uploads/' + item.image) }}" alt="{{ item.name }}">
+                    <div>
+                        <h3>{{ item.name }}</h3>
+                        <p>Ksh {{ item.price }}</p>
+                    </div>
+                    <a href="{{ url_for('remove_from_cart', index=loop.index0) }}" class="text-link">Remove</a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="summary-card">
+                <h3>Order Summary</h3>
+                <div class="summary-row"><span>Subtotal</span><strong>Ksh {{ total }}</strong></div>
+                <div class="summary-row"><span>Delivery</span><strong>Free</strong></div>
+                <hr>
+                <div class="summary-row total"><span>Total</span><strong>Ksh {{ total }}</strong></div>
+                <a href="{{ url_for('checkout_page') }}" class="btn btn-primary btn-block">Proceed to Checkout</a>
+                <a href="{{ url_for('home') }}" class="btn btn-secondary btn-block">Continue Shopping</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h2>Your cart is empty</h2>
+            <p>Browse our collection and add products to your cart.</p>
+            <a href="{{ url_for('home') }}" class="btn btn-primary">Start Shopping</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,45 +1,95 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Garment Store</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    </head>
+{% extends "base.html" %}
 
-<body>
-    <header>
-    <h1>My Garment Store</h1>
-    <p>Quality Clothes at Affordable Prices</p>
+{% block title %}FERI GENERAL STORE{% endblock %}
 
-    <nav>
-    <a href="/">Home</a>
-    <a href="#">Men</a>
-    <a href="#">Women</a>
-    <a href="#">Kids</a>
-    <a href="#">Contact</a>
-    <a href="/cart">Cart 🛒</a>
-    <a href="/admin">Admin</a>
-</nav>
-</header>
+{% block content %}
+
 <section class="hero">
-    <h2>New Fashion Collection 2026</h2>
-    <p>Discover the latest trends for men, women and kids.</p>
-    <button>Shop Now</button>
+    <div class="hero-left">
+        <p class="eyebrow">NEW COLLECTION 2026</p>
+        <h1>Fashion That Defines You.</h1>
+        <p>Discover premium fashion for men, women, and kids at affordable prices. Shop quality products with confidence at FERI GENERAL STORE.</p>
+        <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">🛍 Shop Now</a>
+            <a href="#categories" class="btn btn-secondary">📦 View Collection</a>
+        </div>
+    </div>
+    <div class="hero-right">
+        <img src="{{ url_for('static', filename='images/banner-model.png') }}" alt="Fashion collection">
+    </div>
 </section>
-<div class="products">
-    {% for product in products %}
-<div class="card">
-    <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
 
-    <h2>{{ product.name }}</h2>
+<section id="categories">
+    <h2 class="section-title">Shop By Category</h2>
+    <div class="categories">
+        <a href="/?category=Men" class="category-card">
+            <h1>👔</h1>
+            <h3>Men</h3>
+            <p>Latest men's fashion</p>
+        </a>
+        <a href="/?category=Women" class="category-card">
+            <h1>👗</h1>
+            <h3>Women</h3>
+            <p>Elegant women's collection</p>
+        </a>
+        <a href="/?category=Kids" class="category-card">
+            <h1>🧒</h1>
+            <h3>Kids</h3>
+            <p>Fashion for kids</p>
+        </a>
+        <a href="/?category=Shoes" class="category-card">
+            <h1>👟</h1>
+            <h3>Shoes</h3>
+            <p>Stylish footwear</p>
+        </a>
+    </div>
+</section>
 
-    <p>Ksh {{ product.price }}</p>
+<section id="products">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="products">
+        {% for product in products %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='uploads/' + product.image) }}" alt="{{ product.name }}">
+            <div class="card-body">
+                <h2>{{ product.name }}</h2>
+                <p>Ksh {{ product.price }}</p>
+                <a href="/buy/{{ product.id }}" class="btn btn-block">🛒 Add To Cart</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
-    <a href="/buy/{{ product.id }}">
-        <button>Buy Now</button>
-    </a>
-</div>
-{% endfor %}
-</div>
+<section class="features">
+    <div class="feature">
+        <h2>🚚</h2>
+        <h3>Fast Delivery</h3>
+        <p>Quick delivery across Kenya.</p>
+    </div>
+    <div class="feature">
+        <h2>💳</h2>
+        <h3>Secure Payment</h3>
+        <p>Safe and reliable checkout.</p>
+    </div>
+    <div class="feature">
+        <h2>⭐</h2>
+        <h3>Quality Products</h3>
+        <p>Only genuine quality products.</p>
+    </div>
+    <div class="feature">
+        <h2>🎧</h2>
+        <h3>24/7 Support</h3>
+        <p>We're always ready to help.</p>
+    </div>
+</section>
 
-</body>
-</html>
+<section class="newsletter">
+    <h2>Stay Updated</h2>
+    <p>Subscribe to receive new arrivals and offers.</p>
+    <form>
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+    </form>
+</section>
+{% endblock %}

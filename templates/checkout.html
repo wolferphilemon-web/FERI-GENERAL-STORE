@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout | FERI GENERAL STORE{% endblock %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-card">
+        <p class="eyebrow">Secure checkout</p>
+        <h1>Checkout</h1>
+        <form action="{{ url_for('place_order') }}" method="POST" class="checkout-form">
+            <label>Full Name</label>
+            <input type="text" name="fullname" required>
+            <label>Phone Number</label>
+            <input type="text" name="phone" required>
+            <label>Email</label>
+            <input type="email" name="email">
+            <label>Delivery Address</label>
+            <textarea name="address" rows="5" required></textarea>
+            <button class="btn btn-primary" type="submit">Place Order</button>
+        </form>
+    </div>
+    <div class="page-card summary-card">
+        <h2>Order Summary</h2>
+        {% for item in cart %}
+        <div class="summary-row">
+            <span>{{ item.name }}</span>
+            <strong>Ksh {{ item.price }}</strong>
+        </div>
+        {% endfor %}
+        <hr>
+        <div class="summary-row total">
+            <span>Total</span>
+            <strong>Ksh {{ total }}</strong>
+        </div>
+    </div>
+</section>
+{% endblock %}

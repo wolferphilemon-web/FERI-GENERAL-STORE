@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FERI GENERAL STORE{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="top-header">
+    <div class="logo-section">
+        <img src="{{ url_for('static', filename='images/feri-logo.png') }}" class="logo" alt="FERI logo">
+        <div>
+            <h1>FERI GENERAL STORE</h1>
+            <p>Your One-Stop Shop for Quality Fashion</p>
+        </div>
+    </div>
+
+    <div class="search-section">
+        <form action="{{ url_for('home') }}" method="GET" class="search-box">
+            <input type="text" name="search" placeholder="Search products..." value="{{ search if search else '' }}">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+
+    <div class="contact-section">
+        <h3>📞 +254 712 345 678</h3>
+        <p>Mon - Sat : 8:00AM - 8:00PM</p>
+    </div>
+
+    <div class="cart-section">
+        <a href="{{ url_for('cart_page') }}">🛒 Cart <span class="cart-badge">{{ cart_count if cart_count is defined else 0 }}</span></a>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="{{ url_for('home') }}">🏠 Home</a>
+    <a href="{{ url_for('about_page') }}">ℹ️ About</a>
+    <a href="{{ url_for('contact_page') }}">📞 Contact</a>
+    <a href="{{ url_for('cart_page') }}">🛒 Cart</a>
+    <a href="{{ url_for('admin') }}">⚙️ Admin</a>
+</nav>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>© 2026 FERI GENERAL STORE</p>
+</footer>
+</body>
+</html>

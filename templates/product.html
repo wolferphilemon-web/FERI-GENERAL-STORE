@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} | FERI GENERAL STORE{% endblock %}
+
+{% block content %}
+
+<section class="product-page">
+
+    <div class="product-image">
+
+        <img src="{{ url_for('static', filename='uploads/' + product.image) }}" alt="{{ product.name }}">
+
+    </div>
+
+    <div class="product-info">
+
+        <span style="background:#F6B500;color:black;padding:8px 18px;border-radius:30px;font-weight:bold;">
+            IN STOCK
+        </span>
+
+        <h1>{{ product.name }}</h1>
+
+        <h2>Ksh {{ product.price }}</h2>
+
+        <p>
+            Experience premium quality with our {{ product.name }}.
+            Carefully selected to give you comfort, durability and style.
+            Shop confidently at <strong>FERI GENERAL STORE</strong>, where quality meets affordability.
+        </p>
+
+        <div style="margin:30px 0;">
+
+            <p>✔ Premium Quality</p>
+            <p>✔ Fast Delivery Across Kenya</p>
+            <p>✔ Secure Payments</p>
+            <p>✔ Customer Satisfaction Guaranteed</p>
+
+        </div>
+
+        <a href="{{ url_for('buy', product_id=product.id) }}">
+
+            <button class="buy-btn">
+                🛒 Add To Cart
+            </button>
+
+        </a>
+
+        <a href="{{ url_for('home') }}">
+
+            <button style="margin-left:15px;background:#e9ecef;color:black;padding:16px 35px;border:none;border-radius:40px;cursor:pointer;font-size:17px;">
+                ← Continue Shopping
+            </button>
+
+        </a>
+
+    </div>
+
+</section>
+
+<section class="features">
+
+    <div class="feature">
+
+        <h2>🚚</h2>
+
+        <h3>Fast Delivery</h3>
+
+        <p>Delivery available across Kenya within the shortest time possible.</p>
+
+    </div>
+
+    <div class="feature">
+
+        <h2>💳</h2>
+
+        <h3>Secure Payment</h3>
+
+        <p>Safe and secure payment process for every order.</p>
+
+    </div>
+
+    <div class="feature">
+
+        <h2>⭐</h2>
+
+        <h3>Premium Quality</h3>
+
+        <p>Every product is carefully selected before reaching our customers.</p>
+
+    </div>
+
+</section>
+
+{% endblock %}

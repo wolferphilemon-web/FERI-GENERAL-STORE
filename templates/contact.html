@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | FERI GENERAL STORE{% endblock %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-card">
+        <p class="eyebrow">Get in touch</p>
+        <h1>We’re here to help.</h1>
+        <p>Reach us for product enquiries, delivery assistance, or partnership opportunities.</p>
+        <ul class="contact-list">
+            <li><strong>Phone:</strong> +254 712 345 678</li>
+            <li><strong>Email:</strong> hello@ferigeneralstore.com</li>
+            <li><strong>Address:</strong> Nairobi, Kenya</li>
+        </ul>
+    </div>
+    <div class="page-card">
+        <form action="/contact" method="GET">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+            <textarea rows="5" placeholder="How can we help?" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
